@@ -4,6 +4,7 @@ import java.util.Scanner;
 
 public class InputProcessor {
 
+    //takes in input either derivative or integral
     public void run() {
         Scanner input = new Scanner(System.in);
         System.out.println("What would you like to find?");

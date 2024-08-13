@@ -18,4 +18,12 @@ public class Tokenizer {
         return tokens;
     }
 
+    private static boolean isDigit(Character ch) {
+        return Character.isDigit(ch);
+    }
+
+    private static boolean isDecimal(Character ch) {
+        return ch == '.';
+    }
+
 }

@@ -10,6 +10,8 @@ public class Main {
         InputProcessor ip = new InputProcessor();
         ip.run();
 
-
+        String s = "a a a a";
+        Tokenizer.tokenize(s)
+;
     }
 }

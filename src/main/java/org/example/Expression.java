@@ -18,6 +18,7 @@ public class Expression {
         variable = var;
     }
 
+    //converts a list of tokens (the expression) into a stack of characters expression
     private Stack<Character> shuntingYard() {
         Stack<Character> output = new Stack<>();
         Stack<Character> operator = new Stack<>();

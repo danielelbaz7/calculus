@@ -19,8 +19,8 @@ public class Tokenizer {
             if(isDigit(ch)) {
                 buildingANumber = true;
                 tokenValue.append(ch);
-            } else if(isSign(ch) && (i != 0 && !isLeftParenthesis(charArr[i - 1])
-                    && !isOperator(charArr[i - 1]))) {
+            } else if(isSign(ch) && (i == 0 || isLeftParenthesis(charArr[i - 1])
+                    || !isOperator(charArr[i - 1]))) {
                 buildingANumber = true;
                 tokenValue.append(ch);
             } else if(isDecimal(ch)) {
@@ -30,28 +30,19 @@ public class Tokenizer {
             }
 
             //if it is a digit, decimal, or pos/neg sign, start building a number
-            if(isDigit(ch) || isDecimal(ch) || isSign(ch)) {
-                StringBuilder number = new StringBuilder(String.valueOf(ch));
-
-                //if it is a sign and it is not either next to a parenthesis, another operator, or the first in the express
-                //declare it an operator token
-                if(isSign(ch) && ) {
-                    tokens.add(new Token(Token.OPERATOR, number.toString()));
+            if(buildingANumber) {
+                //build the number
+                while(isDigit(charArr[i + 1]) || isDecimal(charArr[i + 1])) {
+                    System.out.println(charArr[i + 1]);
+                    tokenValue.append(charArr[i + 1]);
+                    i++;
                 }
-                else {
-                    //otherwise, build the number
-                    while(isDigit(charArr[i + 1]) || isDecimal(charArr[i + 1])) {
-                        System.out.println(charArr[i + 1]);
-                        number.append(charArr[i + 1]);
-                        i++;
-                    }
-                    tokens.add(new Token(Token.NUMBER, number.toString()));
-                }
+                tokens.add(new Token(Token.NUMBER, tokenValue.toString()));
             }
         }
-
         return tokens;
     }
+
 
     //helper methods, used in tokenizer to organize each character
     private static boolean isDigit(Character ch) {

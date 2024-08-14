@@ -13,18 +13,39 @@ public class Tokenizer {
 
         for(int i = 0; i < charArr.length; i++) {
             char ch = charArr[i];
+            boolean buildingANumber = false;
+            StringBuilder tokenValue = new StringBuilder();
 
+            if(isDigit(ch)) {
+                buildingANumber = true;
+                tokenValue.append(ch);
+            } else if(isSign(ch) && (i != 0 && !isLeftParenthesis(charArr[i - 1])
+                    && !isOperator(charArr[i - 1]))) {
+                buildingANumber = true;
+                tokenValue.append(ch);
+            } else if(isDecimal(ch)) {
+                buildingANumber = true;
+                tokenValue.append(0);
+                tokenValue.append(ch);
+            }
+
+            //if it is a digit, decimal, or pos/neg sign, start building a number
             if(isDigit(ch) || isDecimal(ch) || isSign(ch)) {
                 StringBuilder number = new StringBuilder(String.valueOf(ch));
 
-                if(i != 0 && !isLeftParenthesis(charArr[i - 1]) && !isOperator(charArr[i - 1])) {
-                    tokens.add(new Token(Token.OPERATOR, String.valueOf(ch)));
+                //if it is a sign and it is not either next to a parenthesis, another operator, or the first in the express
+                //declare it an operator token
+                if(isSign(ch) && ) {
+                    tokens.add(new Token(Token.OPERATOR, number.toString()));
                 }
                 else {
+                    //otherwise, build the number
                     while(isDigit(charArr[i + 1]) || isDecimal(charArr[i + 1])) {
+                        System.out.println(charArr[i + 1]);
                         number.append(charArr[i + 1]);
                         i++;
                     }
+                    tokens.add(new Token(Token.NUMBER, number.toString()));
                 }
             }
         }

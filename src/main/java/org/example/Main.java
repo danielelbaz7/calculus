@@ -8,7 +8,9 @@ public class Main {
     public static void main(String[] args) {
 
         InputProcessor ip = new InputProcessor();
-        ip.run();
+        //ip.run();
+
+        System.out.println(Tokenizer.tokenize("-123456789 s789s", 'x').get(1).value);
 
         String s = "a a a a";
         Tokenizer.tokenize(s, 'x')

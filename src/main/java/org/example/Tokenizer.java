@@ -19,8 +19,8 @@ public class Tokenizer {
             if(isDigit(ch)) {
                 buildingANumber = true;
                 tokenValue.append(ch);
-            } else if(isSign(ch) && (i == 0 || isLeftParenthesis(charArr[i - 1])
-                    || !isOperator(charArr[i - 1]))) {
+            } else if(isSign(ch) &&
+                    (i == 0 || isLeftParenthesis(charArr[i - 1]) || !isOperator(charArr[i - 1]))) {
                 buildingANumber = true;
                 tokenValue.append(ch);
             } else if(isDecimal(ch)) {
@@ -39,7 +39,17 @@ public class Tokenizer {
                 }
                 tokens.add(new Token(Token.NUMBER, tokenValue.toString()));
             }
+
+            else if(isLetter(ch)) {
+
+            }
+
+            else if(isOperator(ch)) {
+                tokens.add(new Token(Token.OPERATOR, String.valueOf(ch)));
+            }
+
         }
+
         return tokens;
     }
 
@@ -57,8 +67,8 @@ public class Tokenizer {
         return ch == '+' || ch == '-';
     }
 
-    private static boolean isVariable(Character ch, Character variable) {
-        return ch == variable;
+    private static boolean isLetter(Character ch) {
+        return Character.isLetter(ch);
     }
 
     private static boolean isOperator(Character ch) {

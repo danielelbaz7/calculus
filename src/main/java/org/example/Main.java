@@ -11,7 +11,7 @@ public class Main {
         ip.run();
 
         String s = "a a a a";
-        Tokenizer.tokenize(s)
+        Tokenizer.tokenize(s, 'x')
 ;
     }
 }

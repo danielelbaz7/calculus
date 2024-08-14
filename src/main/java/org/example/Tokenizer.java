@@ -5,7 +5,7 @@ import java.util.List;
 
 public class Tokenizer {
 
-    public static List<Token> tokenize(String str) {
+    public static List<Token> tokenize(String str, Character variable) {
         List<Token> tokens = new ArrayList<Token>();
 
         str = str.replaceAll(" ", "");
@@ -24,6 +24,22 @@ public class Tokenizer {
 
     private static boolean isDecimal(Character ch) {
         return ch == '.';
+    }
+
+    private static boolean isVariable(Character ch, Character variable) {
+        return ch == variable;
+    }
+
+    private static boolean isOperator(Character ch) {
+        return ch == '+' || ch == '-' || ch == '*' || ch == '/' || ch == '^';
+    }
+
+    private static boolean isLeftParenthesis(Character ch) {
+        return ch == '(';
+    }
+
+    private static boolean isRightParenthesis(Character ch) {
+        return ch == ')';
     }
 
 }
